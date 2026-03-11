@@ -7,12 +7,13 @@ module RenderWithAreas
 
     def render_in(_view_context, &block)
       @view_context = _view_context
-      locals[:content] = view_context.capture(self, &block)
-      view_context.render partial: partial_path, locals: locals
+      captured = view_context.capture(self, &block)
+      view_context.render(partial_path, locals) { captured }
     end
 
     def with(area, content = nil, &block)
       locals[area] = content || view_context.capture(&block)
+      nil
     end
 
     private

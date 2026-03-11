@@ -32,7 +32,7 @@ Example:
   </header>
 
   <main>
-    <%= content %>
+    <%= yield %>
   </main>
 
   <footer class="modal__footer">
@@ -47,7 +47,7 @@ Example:
     <h1>Modal Title</h1>
   <% end %>
 
-  This will show up as "content"
+  This will be yielded as default content
 
   <% layout.with :footer do %>
     This will show up in the modal footer.
@@ -57,7 +57,7 @@ Example:
 
 <!-- also supports locals, strings -->
 <%= render_with_areas 'path/to/partial', title: "Modal Title" do |layout| %>
-  This will show up as "content"
+  This will be yielded as default content
 
   <% layout.with :footer, "Footer" %>
 <% end %>
